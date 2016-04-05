@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by heyang on 16/4/5.
  */
 @Controller
-@RequestMapping("/greeting")
-public class GreetingController {
-    public String greeting(){
-        return "redirect:/greeting";
+@RequestMapping("/test")
+public class TestController {
+    public String test(){
+        return "test";
     }
 }

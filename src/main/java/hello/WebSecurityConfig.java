@@ -7,30 +7,28 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-/**
- * Created by Administrator on 2016/4/5.
- */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                    .antMatchers("/","/home").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
-                    .permitAll()
-                    .and()
-                .logout()
-                    .permitAll();
-
+            .authorizeRequests()
+                .antMatchers("/", "/home","/test").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
     }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
+            .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
     }
 }
